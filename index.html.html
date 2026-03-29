@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OralPrime Odontologia</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0a1628;--blue:#1a3a6b;--sky:#2d6fd4;--aqua:#3dbccc;--white:#fff;--light:#f0f6fc;--gray:#6b7c93;--green:#2cc990;--border:rgba(10,22,40,.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden}
+
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 64px;height:70px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(45,111,212,.1)}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;border-radius:50%;background:var(--aqua)}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{font-size:14px;color:var(--gray);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-links a:hover{color:var(--sky)}
+.nav-btn{background:var(--sky);color:white!important;padding:10px 24px;border-radius:6px;font-weight:500!important}
+.nav-btn:hover{background:var(--blue)!important}
+
+.hero{min-height:100vh;padding-top:70px;position:relative;overflow:hidden;display:flex}
+.hero-left{width:55%;display:flex;flex-direction:column;justify-content:center;padding:80px 64px;position:relative;z-index:2;background:var(--navy)}
+.hero-right{width:45%;position:relative;overflow:hidden}
+.hero-right img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-right-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--navy) 0%,transparent 30%)}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(61,188,204,.12);border:1px solid rgba(61,188,204,.25);color:var(--aqua);padding:7px 18px;border-radius:100px;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:32px;width:fit-content}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--aqua)}
+.hero-title{font-family:'DM Serif Display',serif;font-size:clamp(44px,5.5vw,72px);line-height:1.05;color:white;margin-bottom:24px}
+.hero-title span{color:var(--aqua)}
+.hero-desc{font-size:16px;line-height:1.85;color:rgba(255,255,255,.55);max-width:440px;font-weight:300;margin-bottom:48px}
+.btn-sky{background:var(--sky);color:white;padding:16px 40px;border-radius:8px;text-decoration:none;font-size:15px;font-weight:500;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.btn-sky:hover{background:var(--aqua);transform:translateY(-2px);box-shadow:0 16px 40px rgba(45,111,212,.35)}
+.btn-outline-navy{border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:16px 36px;border-radius:8px;text-decoration:none;font-size:15px;font-weight:400;transition:all .3s}
+.btn-outline-navy:hover{border-color:var(--aqua);color:var(--aqua)}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.hero-metrics{display:flex;gap:0;margin-top:60px;border-top:1px solid rgba(255,255,255,.08);padding-top:40px}
+.metric{flex:1;padding-right:32px}
+.metric:not(:last-child){border-right:1px solid rgba(255,255,255,.08);margin-right:32px}
+.metric-n{font-family:'DM Serif Display',serif;font-size:40px;color:white;line-height:1}
+.metric-n span{color:var(--aqua)}
+.metric-l{font-size:12px;color:rgba(255,255,255,.35);margin-top:4px}
+
+.kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:12px}
+.sec-title{font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,50px);color:var(--navy);margin-bottom:56px}
+.sec-title em{font-style:italic;color:var(--sky)}
+
+/* SERVICES */
+.services{padding:100px 64px;background:var(--light)}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.srv-card{background:white;padding:44px 36px;border:1px solid var(--border);transition:all .3s;cursor:default;position:relative;overflow:hidden}
+.srv-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--sky);transform:scaleX(0);transition:transform .3s}
+.srv-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(10,22,40,.09)}
+.srv-card:hover::after{transform:scaleX(1)}
+.srv-img{width:100%;height:220px;margin-bottom:24px;display:block;background-size:cover;background-position:center;background-color:#c8ddf0}
+.srv-num{font-family:'DM Serif Display',serif;font-size:48px;color:rgba(45,111,212,.1);line-height:1;margin-bottom:12px}
+.srv-name{font-size:18px;font-weight:600;color:var(--navy);margin-bottom:10px}
+.srv-desc{font-size:14px;color:var(--gray);line-height:1.7}
+.srv-pill{margin-top:20px;display:inline-block;background:rgba(45,111,212,.08);color:var(--sky);padding:4px 14px;border-radius:4px;font-size:12px;font-weight:500}
+
+/* ABOUT STRIP */
+.about-strip{display:grid;grid-template-columns:1fr 1fr}
+.strip-img{position:relative;overflow:hidden;min-height:500px}
+.strip-img img{width:100%;height:100%;object-fit:cover;display:block}
+.strip-content{background:var(--navy);padding:80px 72px;display:flex;flex-direction:column;justify-content:center}
+.strip-content .kicker{color:var(--aqua)}
+.strip-content .sec-title{color:white;margin-bottom:28px}
+.strip-content .sec-title em{color:var(--aqua)}
+.strip-text{font-size:15px;color:rgba(255,255,255,.5);line-height:1.9;font-weight:300;margin-bottom:36px}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:44px}
+.check-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.65)}
+.check-icon{color:var(--green);font-weight:700;flex-shrink:0}
+
+/* DEPOIMENTOS */
+.testimonials{padding:100px 64px;background:white}
+.test-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:64px;flex-wrap:wrap;gap:24px}
+.test-sub{font-size:14px;color:var(--gray);font-weight:300;max-width:260px;line-height:1.7;text-align:right}
+.test-hero-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:20px;margin-bottom:20px}
+.test-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.t-card{background:var(--light);border-radius:12px;padding:36px;border:1px solid var(--border);position:relative;transition:all .3s}
+.t-card:hover{box-shadow:0 20px 50px rgba(10,22,40,.08);border-color:var(--sky)}
+.t-card.dark{background:var(--navy);border-color:transparent}
+.t-card.featured{border-left:4px solid var(--sky);background:white}
+.t-treatment{position:absolute;top:20px;right:20px;background:rgba(45,111,212,.08);color:var(--sky);padding:4px 12px;border-radius:4px;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.t-card.dark .t-treatment{background:rgba(61,188,204,.1);color:var(--aqua)}
+.t-stars{display:flex;gap:3px;margin-bottom:16px}
+.t-star{color:#f5a623;font-size:15px}
+.t-text{font-size:15px;line-height:1.8;color:var(--navy);font-style:italic;margin-bottom:28px}
+.t-text.lg{font-size:18px;line-height:1.75}
+.t-card.dark .t-text{color:rgba(255,255,255,.72)}
+.t-author{display:flex;align-items:center;gap:14px}
+.t-avatar-img{width:48px;height:48px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(45,111,212,.2)}
+.t-card.dark .t-avatar-img{border-color:rgba(61,188,204,.2)}
+.t-name{font-size:14px;font-weight:600;color:var(--navy)}
+.t-card.dark .t-name{color:white}
+.t-role{font-size:12px;color:var(--gray);margin-top:2px}
+.t-card.dark .t-role{color:rgba(255,255,255,.35)}
+
+/* CTA */
+.cta-band{background:var(--sky);padding:0}
+.cta-band-inner{display:grid;grid-template-columns:1fr 1fr}
+.cta-band-left{padding:80px 80px;display:flex;flex-direction:column;justify-content:center}
+.cta-band-title{font-family:'DM Serif Display',serif;font-size:clamp(36px,4.5vw,58px);color:white;line-height:1.05;margin-bottom:20px}
+.cta-band-title span{color:var(--navy)}
+.cta-band-text{font-size:15px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:36px;max-width:400px}
+.btn-white{background:white;color:var(--sky);padding:16px 40px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.btn-white:hover{background:var(--navy);color:white}
+.cta-band-right{position:relative;overflow:hidden;min-height:460px}
+.cta-band-right img{width:100%;height:100%;object-fit:cover;display:block;opacity:.7}
+.cta-contacts{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
+.cta-contact{font-size:14px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:10px}
+.cta-contact strong{color:white}
+
+footer{background:var(--navy);padding:40px 64px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(255,255,255,.05)}
+.footer-logo{font-family:'DM Serif Display',serif;font-size:20px;color:white;display:flex;align-items:center;gap:8px}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--aqua)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.15)}
+
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero{flex-direction:column}.hero-left{width:100%;padding:70px 24px}.hero-right{width:100%;height:280px}
+  .services{padding:70px 24px}.srv-grid{grid-template-columns:1fr}
+  .about-strip{grid-template-columns:1fr}.strip-img{min-height:260px}.strip-content{padding:60px 24px}
+  .testimonials{padding:70px 24px}.test-hero-grid{grid-template-columns:1fr}.test-row{grid-template-columns:1fr}
+  .test-header{flex-direction:column}.test-sub{text-align:left}
+  .cta-band-inner{grid-template-columns:1fr}.cta-band-right{display:none}.cta-band-left{padding:60px 24px}
+  footer{padding:32px 24px;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">OralPrime <div class="logo-dot"></div></div>
+  <ul class="nav-links">
+    <li><a href="#">Especialidades</a></li>
+    <li><a href="#">Equipe</a></li>
+    <li><a href="#">Convênios</a></li>
+    <li><a href="#" class="nav-btn">Agendar consulta</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-tag"><div class="hero-dot"></div> Odontologia de Excelência</span>
+    <h1 class="hero-title">O sorriso que você<br>sempre <span>quis ter</span></h1>
+    <p class="hero-desc">Tratamentos odontológicos completos com tecnologia digital avançada. Da prevenção à reabilitação, cuidamos do seu sorriso com amor e expertise.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-sky">Agendar agora →</a>
+      <a href="#" class="btn-outline-navy">Ver especialidades</a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric"><div class="metric-n">5k<span>+</span></div><div class="metric-l">Pacientes atendidos</div></div>
+      <div class="metric"><div class="metric-n">15<span>+</span></div><div class="metric-l">Anos de experiência</div></div>
+      <div class="metric"><div class="metric-n">4.9<span>★</span></div><div class="metric-l">Avaliação geral</div></div>
+    </div>
+  </div>
+  <div class="hero-right" style="background-image:url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=90');background-size:cover;background-position:center">
+    <div class="hero-right-overlay"></div>
+  </div>
+</section>
+
+<section class="services">
+  <p class="kicker">Especialidades</p>
+  <h2 class="sec-title">Cuidado completo para o seu <em>sorriso</em></h2>
+  <div class="srv-grid">
+    <div class="srv-card">
+      <div class="srv-img" style="background-image:url('https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=85')"></div>
+      <div class="srv-num">01</div>
+      <h3 class="srv-name">Implante Dentário</h3>
+      <p class="srv-desc">Reposição de dentes perdidos com implantes de titânio de alta qualidade. Resultado estético e funcional definitivo.</p>
+      <span class="srv-pill">Reabilitação</span>
+    </div>
+    <div class="srv-card">
+      <div class="srv-img" style="background-image:url('https://images.unsplash.com/photo-1583912268183-a34d41fe464a?w=600&q=85')"></div>
+      <div class="srv-num">02</div>
+      <h3 class="srv-name">Ortodontia Invisível</h3>
+      <p class="srv-desc">Alinhadores discretos para corrigir posicionamento dental com máximo conforto e resultados espetaculares.</p>
+      <span class="srv-pill">Alinhamento</span>
+    </div>
+    <div class="srv-card">
+      <div class="srv-img" style="background-image:url('https://images.unsplash.com/photo-1602526430780-782d6b1783fa?w=600&q=85')"></div>
+      <div class="srv-num">03</div>
+      <h3 class="srv-name">Lente de Contato Dental</h3>
+      <p class="srv-desc">Facetas cerâmicas ultrafinas para transformar a estética com desgaste mínimo do dente natural. Resultado imediato.</p>
+      <span class="srv-pill">Estética</span>
+    </div>
+  </div>
+</section>
+
+<section class="about-strip">
+  <div class="strip-img" style="background-image:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=85');background-size:cover;background-position:center"></div>
+  <div class="strip-content">
+    <p class="kicker">Nossa estrutura</p>
+    <h2 class="sec-title">Tecnologia <em>digital</em><br>a seu serviço</h2>
+    <p class="strip-text">Nossa clínica conta com os mais modernos equipamentos odontológicos do mercado: raio-X 3D, scanner intraoral e sistema CAD/CAM para próteses no mesmo dia.</p>
+    <ul class="check-list">
+      <li><span class="check-icon">✓</span> Raio-X Tomográfico 3D</li>
+      <li><span class="check-icon">✓</span> Scanner intraoral digital</li>
+      <li><span class="check-icon">✓</span> Laser de baixa frequência</li>
+      <li><span class="check-icon">✓</span> Consultório com TV e Wi-Fi</li>
+      <li><span class="check-icon">✓</span> Próteses no mesmo dia (CAD/CAM)</li>
+    </ul>
+    <a href="#" class="btn-sky">Conhecer a clínica</a>
+  </div>
+</section>
+
+<!-- ═══════════ DEPOIMENTOS ═══════════ -->
+<section class="testimonials">
+  <div class="test-header">
+    <div>
+      <p class="kicker">Depoimentos</p>
+      <h2 class="sec-title" style="margin-bottom:0">Pacientes que<br><em>transformaram</em> o sorriso</h2>
+    </div>
+    <p class="test-sub">Histórias reais de quem escolheu a OralPrime para cuidar da saúde bucal.</p>
+  </div>
+
+  <div class="test-hero-grid">
+    <div class="t-card dark">
+      <span class="t-treatment">Implante Dentário</span>
+      <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
+      <p class="t-text lg">"Perdi dois dentes em um acidente e fiquei sem sorrir por anos. Fiz os implantes aqui e o resultado ficou tão natural que nem eu acredito. Recuperei minha confiança completamente — só me arrependo de não ter feito antes!"</p>
+      <div class="t-author">
+        <img class="t-avatar-img" src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=120&q=80" alt="Carlos">
+        <div>
+          <div class="t-name">Carlos Mendes</div>
+          <div class="t-role">Implante dentário • Paciente há 2 anos</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card featured">
+      <span class="t-treatment">Lentes de Contato</span>
+      <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
+      <p class="t-text">"Sempre tive vergonha de sorrir por causa da coloração dos meus dentes. As lentes de contato mudaram tudo. O processo foi rápido, indolor e o resultado é absolutamente incrível!"</p>
+      <div class="t-author">
+        <img class="t-avatar-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&q=80" alt="Patricia">
+        <div>
+          <div class="t-name">Patricia Oliveira</div>
+          <div class="t-role">Lentes de Contato • Paciente há 1 ano</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="test-row">
+    <div class="t-card">
+      <span class="t-treatment">Ortodontia</span>
+      <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
+      <p class="t-text">"Com 38 anos, achei que era tarde para aparelho. Errei feio! Em 14 meses com os alinhadores, meu sorriso ficou perfeito. Ninguém nem notava que estava usando."</p>
+      <div class="t-author">
+        <img class="t-avatar-img" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&q=80" alt="Roberto">
+        <div>
+          <div class="t-name">Roberto Alves</div>
+          <div class="t-role">Ortodontia • Paciente há 1 ano</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <span class="t-treatment">Odonto Infantil</span>
+      <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
+      <p class="t-text">"Minha filha tinha pavor de dentista e na primeira consulta aqui ficou pedindo pra voltar. O cuidado com as crianças é diferenciado — lúdico, acolhedor e profissional."</p>
+      <div class="t-author">
+        <img class="t-avatar-img" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=120&q=80" alt="Mariana">
+        <div>
+          <div class="t-name">Mariana Costa</div>
+          <div class="t-role">Odonto Infantil • Paciente há 3 anos</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <span class="t-treatment">Clareamento</span>
+      <div class="t-stars"><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span><span class="t-star">★</span></div>
+      <p class="t-text">"Uma sessão de clareamento a laser e fiquei chocada com o resultado. Meus dentes ficaram 7 tons mais claros em uma tarde. Atendimento perfeito do início ao fim!"</p>
+      <div class="t-author">
+        <img class="t-avatar-img" src="https://images.unsplash.com/photo-1504703395950-b89145a5425b?w=120&q=80" alt="Luciana">
+        <div>
+          <div class="t-name">Luciana Ramos</div>
+          <div class="t-role">Clareamento • Paciente há 6 meses</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <div class="cta-band-left">
+      <h2 class="cta-band-title">Agende hoje.<br><span>Primeira consulta</span><br>é gratuita.</h2>
+      <p class="cta-band-text">Avaliação completa com raio-X digital e orçamento sem compromisso. Atendemos convênios e particular.</p>
+      <div class="cta-contacts">
+        <span class="cta-contact">📍 <strong>Rua das Acácias, 220 — Centro</strong></span>
+        <span class="cta-contact">📞 <strong>(11) 3333-0000</strong></span>
+        <span class="cta-contact">⏰ <strong>Seg–Sex: 8h–18h | Sáb: 8h–13h</strong></span>
+      </div>
+      <a href="#" class="btn-white">Agendar consulta gratuita →</a>
+    </div>
+    <div class="cta-band-right">
+      <img src="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=900&q=80" alt="Dentista atendendo">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">OralPrime <div class="logo-dot"></div></div>
+  <div class="footer-links">
+    <a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">Convênios</a>
+  </div>
+  <span class="footer-copy">© 2025 OralPrime Odontologia. Todos os direitos reservados.</span>
+</footer>
+</body>
+</html>
